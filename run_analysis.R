@@ -16,46 +16,46 @@ library(dplyr)
 
 ## Collect the project data
 ## If "data" folder is not there in the current woring directory, then create it. 
-if(!file.exists("data")){
+if(!file.exists("Samsung data")){
 	## Data directory doesn't exist, creating the directory
-	dir.create("data")
+	dir.create("Samsung data")
 }
 
 ## Download the project data
-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile="./data/dataset.zip")
+download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile="./Samsung data/dataset.zip")
 
 ## Extract the downloaded Zip
-unzip("./data/dataset.zip", exdir="./data/")
+unzip("./Samsung data/dataset.zip", exdir="./Samsung data/")
 
 ## Project Data collected
 
 ## Read the different data/text files
 
 ## Read the features list
-features <- read.table("./data/UCI HAR Dataset/features.txt")
+features <- read.table("./Samsung data/UCI HAR Dataset/features.txt")
 
 ## Read the activity labels list
-activities <- read.table("./data/UCI HAR Dataset/activity_labels.txt")
+activities <- read.table("./Samsung data/UCI HAR Dataset/activity_labels.txt")
 
 ## Read Training Data Sets
 ## Read Training Subjects list
-subjecttrain <- read.table("./data/UCI HAR Dataset/train/subject_train.txt")
+subjecttrain <- read.table("./Samsung data/UCI HAR Dataset/train/subject_train.txt")
 
 ## Read Training Activities list
-actvitytrain <- read.table("./data/UCI HAR Dataset/train/y_train.txt")
+actvitytrain <- read.table("./Samsung data/UCI HAR Dataset/train/y_train.txt")
 
 ## Read Training variables list
-variablestrain <- read.table("./data/UCI HAR Dataset/train/X_train.txt")
+variablestrain <- read.table("./Samsung data/UCI HAR Dataset/train/X_train.txt")
 
 ## Read Test Data Sets
 ## Read Test Subjects list
-subjecttest <- read.table("./data/UCI HAR Dataset/test/subject_test.txt")
+subjecttest <- read.table("./Samsung data/UCI HAR Dataset/test/subject_test.txt")
 
 ## Read Test Activities list
-actvitytest <- read.table("./data/UCI HAR Dataset/test/y_test.txt")
+actvitytest <- read.table("./Samsung data/UCI HAR Dataset/test/y_test.txt")
 
 ## Read Test variables list
-variablestest <- read.table("./data/UCI HAR Dataset/test/X_test.txt")
+variablestest <- read.table("./Samsung data/UCI HAR Dataset/test/X_test.txt")
 
 
 ## Merge training and test data sets into single data set
@@ -95,4 +95,4 @@ trimmeddataset$activity <- activities[trimmeddataset$activity,]$V2
 tidydata <- trimmeddataset %>% group_by(activity, volunteer) %>% summarise_each(funs(mean))
 
 #Save the data frame into file
-write.table(tidydata, file="./data/tidydata.txt", row.names=FALSE)
+write.table(tidydata, file="./Samsung data/tidydata.txt", row.names=FALSE)
